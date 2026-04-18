@@ -11,7 +11,7 @@ CFLAGS = -Wall -Wextra -g
 TARGET = chessd
 
 # All .c files in src/ are our sources
-SRCS = src/main.c src/board.c
+SRCS = src/main.c
 
 # For each .c file, there will be a .o (object) file
 # This replaces the src/ prefix and .c suffix with .o

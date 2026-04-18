@@ -10,21 +10,25 @@ pthreads, and ncurses.
 
 ## Status
 
-Early development — the board isn't even drawn yet.
+Phase 1 complete — the board renders in the terminal with colored squares and unicode pieces.
+
+Built on a bitboard representation: each piece type is stored as a 64-bit integer where
+every bit maps to one square. Color is encoded by sign. The entire board state fits in
+12 uint64_t values.
 
 ---
 
 ## Roadmap
 
-- [ ] Phase 1 — The Board
-- [ ] Phase 2 — Movement
-- [ ] Phase 3 — Legal Moves
-- [ ] Phase 4 — Check
-- [ ] Phase 5 — Game Endings
-- [ ] Phase 6 — Special Moves
-- [ ] Phase 7 — Complete Local Game
-- [ ] Phase 8 — Concurrency Primitives
-- [ ] Phase 9 — Multiplayer Server
+- [x] Phase 1  — The Board
+- [ ] Phase 2  — Movement
+- [ ] Phase 3  — Legal Moves
+- [ ] Phase 4  — Check
+- [ ] Phase 5  — Game Endings
+- [ ] Phase 6  — Special Moves
+- [ ] Phase 7  — Complete Local Game
+- [ ] Phase 8  — Concurrency Primitives
+- [ ] Phase 9  — Multiplayer Server
 - [ ] Phase 10 — Game Persistence
 - [ ] Phase 11 — Accounts
 - [ ] Phase 12 — Elo Ratings
@@ -37,7 +41,8 @@ Early development — the board isn't even drawn yet.
 - [ ] Phase 19 — Admin & Config
 - [ ] Phase 20 — Hardening & Performance
 
-(Yeah, the Roadmap is AI generated, Don't Judge)
+(Yeah, the roadmap is AI generated. Don't judge.)
+
 ---
 
 ## Building
