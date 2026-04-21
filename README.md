@@ -1,6 +1,6 @@
 # chessd
 
-Building a full chess.com clone in C, just to annoy everyone who's never touched a pointer.
+Building a full chess.com clone in C, just to annoy framework bros.
 
 Single-player against an engine, two players over a network, accounts, Elo ratings,
 matchmaking, and tournaments. No GUI. No frameworks. No dependencies beyond libc,
@@ -10,18 +10,41 @@ pthreads, and ncurses.
 
 ## Status
 
-Phase 1 complete — the board renders in the terminal with colored squares and unicode pieces.
+**Phase 2 complete** - pieces move.
 
-Built on a bitboard representation: each piece type is stored as a 64-bit integer where
-every bit maps to one square. Color is encoded by sign. The entire board state fits in
-12 uint64_t values.
+Moves are entered in coordinate notation (`e2e4`, `b1c3`). The board updates correctly,
+captures work, and the turn advances. No legality validation yet — that's Phase 3.
+
+### Board representation
+
+The board is stored as 12 bitboards: one `uint64_t` per piece type per color.
+Bit N maps to square N, where square 0 = a1 and square 63 = h8.
+The entire board state fits in 12 `uint64_t` values plus a turn flag.
+
+### Move representation
+
+Moves are parsed from pure coordinate notation (no separator, no disambiguation).
+`move_parse()` converts a string to source/destination square indices.
+`move_apply()` executes the move: clears the source bit, sets the destination bit,
+and — on captures — clears the captured piece's bit first.
+
+---
+
+## Source layout
+
+```
+src/
+  board.h / board.c   - Board type, init, piece lookup, rendering
+  move.h  / move.c    — Move parsing and application
+  main.c              — Entry point and game loop
+```
 
 ---
 
 ## Roadmap
 
 - [x] Phase 1  — The Board
-- [ ] Phase 2  — Movement
+- [x] Phase 2  — Movement
 - [ ] Phase 3  — Legal Moves
 - [ ] Phase 4  — Check
 - [ ] Phase 5  — Game Endings
