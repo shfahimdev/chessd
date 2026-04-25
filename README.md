@@ -24,9 +24,6 @@ The entire board state fits in 12 `uint64_t` values plus a turn flag.
 ### Move representation
 
 Moves are parsed from pure coordinate notation (no separator, no disambiguation).
-`move_parse()` converts a string to source/destination square indices.
-`move_apply()` executes the move: clears the source bit, sets the destination bit,
-and — on captures — clears the captured piece's bit first.
 
 ---
 
@@ -34,8 +31,6 @@ and — on captures — clears the captured piece's bit first.
 
 ```
 src/
-  board.h / board.c   - Board type, init, piece lookup, rendering
-  move.h  / move.c    — Move parsing and application
   main.c              — Entry point and game loop
 ```
 
@@ -64,18 +59,8 @@ src/
 - [ ] Phase 19 — Admin & Config
 - [ ] Phase 20 — Hardening & Performance
 
-(Yeah, the roadmap is AI generated. Don't judge.)
 
 ---
-
-## Building
-
-```bash
-git clone https://github.com/shfahimdev/chessd.git
-cd chessd
-make
-./chessd
-```
 
 Requirements: GCC, make, pthreads, ncurses.
 
