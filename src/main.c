@@ -220,6 +220,11 @@ void make_move(Board *b, char str[]) {
         *piece_bit |= (1ULL << square_to);
     }
 
+    if (b->turn == 0) {
+        b->turn = 1;
+    } else {
+        b->turn = 0;
+    }
     board_print(b);
 }
 
@@ -228,10 +233,13 @@ int main(void) {
     board_init(&b);
     board_print(&b);
 
-    char str[10];
-    printf("Enter Move: ");
-    scanf("%9s", str);
+    while (1) {
+        char str[10];
+        printf("Enter Move: ");
+        scanf("%9s", str);
 
-    make_move(&b, str);
+        make_move(&b, str);
+    }
+
     return 0;
 }
